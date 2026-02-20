@@ -1,4 +1,5 @@
-import { useGetPostsQuery } from '../entities/post/post.api';
+import { Link } from 'react-router-dom';
+import { useGetPostsQuery } from '../../entities/post/post.api';
 
 export const PostsPage = () => {
     const { data, isLoading, isError, error } = useGetPostsQuery();
@@ -17,7 +18,9 @@ export const PostsPage = () => {
             <ul>
                 {data?.slice(0, 10).map((post) => (
                     <li key={post.id}>
-                        <h3>{post.title}</h3>
+                        <Link to={`/posts/${post.id}`}>
+                            <h3>{post.title}</h3>
+                        </Link>
                         <p>{post.body}</p>
                     </li>
                 ))}

@@ -1,5 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useGetPostByIdQuery } from '../../entities/post/post.api';
+import { Loader } from '../../ui/loader/Loader';
+import { ErrorMessage } from '../../ui/error-message/ErrorMessage';
 
 export const PostDetailsPage = () => {
     const { id } = useParams<{ id: string }>();
@@ -13,11 +15,11 @@ export const PostDetailsPage = () => {
     });
 
     if (!id) {
-        return <div>Invalid post id</div>;
+        return <ErrorMessage message="Invalid post id" />;
     }
 
-    if (isLoading) return <div>Loading post...</div>;
-    if (isError) return <div>Error loading post</div>;
+    if (isLoading) return <Loader />;
+    if (isError) return <ErrorMessage />;
 
     return (
         <div>

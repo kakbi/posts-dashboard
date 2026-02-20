@@ -1,15 +1,17 @@
 import { Link } from 'react-router-dom';
 import { useGetPostsQuery } from '../../entities/post/post.api';
+import { Loader } from '../../ui/loader/Loader';
+import { ErrorMessage } from '../../ui/error-message/ErrorMessage';
 
 export const PostsPage = () => {
     const { data, isLoading, isError, error } = useGetPostsQuery();
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <Loader />;
     }
 
     if (isError) {
-        return <div>Error: {JSON.stringify(error)}</div>;
+        return <ErrorMessage message={JSON.stringify(error)} />;
     }
 
     return (

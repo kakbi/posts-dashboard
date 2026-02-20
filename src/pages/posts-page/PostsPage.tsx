@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useGetPostsQuery } from '../../entities/post/post.api';
 import { Loader } from '../../ui/loader/Loader';
 import { ErrorMessage } from '../../ui/error-message/ErrorMessage';
+import { CreatePostForm } from '../../features/create-post';
 
 export const PostsPage = () => {
     const { data, isLoading, isError, error } = useGetPostsQuery();
@@ -17,6 +18,8 @@ export const PostsPage = () => {
     return (
         <div>
             <h1>Posts</h1>
+            <CreatePostForm />
+
             <ul>
                 {data?.slice(0, 10).map((post) => (
                     <li key={post.id}>
